@@ -1,7 +1,7 @@
-on: [pull_request]
+on: [release]
 
 jobs:
-  build-test-macos:
+  publish-macos:
     runs-on: macos-13
     steps:
       - uses: actions/checkout@v3
@@ -22,4 +22,4 @@ jobs:
           distribution: 'adopt'
           java-version: '17'
       - run: |
-          ./gradlew build
+          ./gradlew publishAllPublicationsToMavenRepository
