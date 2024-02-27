@@ -1,0 +1,74 @@
+on: [pull_request]
+
+jobs:
+  test-jvm:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/cache@v3
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+            ~/.konan
+            .gradle
+            ktor/build
+          key: v1-kmp-common-${{ runner.os }}-${{ hashFiles('**/*.gradle*', '**/gradle.properties', '**/gradle-wrapper.properties', '**/libs.versions.toml') }}
+          restore-keys: |
+            v1-kmp-common-${{ runner.os }}-${{ hashFiles('**/*.gradle*', '**/gradle.properties', '**/gradle-wrapper.properties', '**/libs.versions.toml') }}
+            v1-kmp-common-${{ runner.os }}-
+      - uses: actions/setup-java@v3
+        with:
+          distribution: 'adopt'
+          java-version: '17'
+      - run: |
+          ./gradlew jvmTest
+
+  test-linux-x64:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/cache@v3
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+            ~/.konan
+            .gradle
+            ktor/build
+          key: v1-kmp-common-${{ runner.os }}-${{ hashFiles('**/*.gradle*', '**/gradle.properties', '**/gradle-wrapper.properties', '**/libs.versions.toml') }}
+          restore-keys: |
+            v1-kmp-common-${{ runner.os }}-${{ hashFiles('**/*.gradle*', '**/gradle.properties', '**/gradle-wrapper.properties', '**/libs.versions.toml') }}
+            v1-kmp-common-${{ runner.os }}-
+      - uses: actions/setup-java@v3
+        with:
+          distribution: 'adopt'
+          java-version: '17'
+      - name: Install dependencies
+        run: |
+          sudo apt-get update && sudo apt-get install libcurl4-openssl-dev -y
+      - run: |
+          ./gradlew linuxX64Test
+
+  test-macos-x64:
+    runs-on: macos-13
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/cache@v3
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+            ~/.konan
+            .gradle
+            ktor/build
+          key: v1-kmp-common-${{ runner.os }}-${{ hashFiles('**/*.gradle*', '**/gradle.properties', '**/gradle-wrapper.properties', '**/libs.versions.toml') }}
+          restore-keys: |
+            v1-kmp-common-${{ runner.os }}-${{ hashFiles('**/*.gradle*', '**/gradle.properties', '**/gradle-wrapper.properties', '**/libs.versions.toml') }}
+            v1-kmp-common-${{ runner.os }}-
+      - uses: actions/setup-java@v3
+        with:
+          distribution: 'adopt'
+          java-version: '17'
+      - run: |
+          ./gradlew macosX64Test
