@@ -1,9 +1,7 @@
-name: "Build / test PR"
-
-on: [pull_request]
+on: [release]
 
 jobs:
-  build-test-macos:
+  publish-macos:
     runs-on: macos-13
     steps:
       - name: "Checkout repo"
@@ -29,14 +27,5 @@ jobs:
           distribution: 'adopt'
           java-version: '17'
 
-      - name: "Build"
-        run: ./gradlew build
-
-#      - name: "Run tests"
-#        run: ./gradlew test
-
-      - name: "Upload build artifacts"
-        uses: actions/upload-artifact@v4
-        with:
-          name: "Package"
-          path: ktor/build/libs
+      - name: "Publish"
+        run: ./gradlew publishAllPublicationsToMavenRepository
