@@ -90,13 +90,13 @@ android {
 //}
 
 group = "kmp.common"
-version = "0.1-SNAPSHOT-3" //versionString()
+version = "0.1-SNAPSHOT-5" //versionString()
 
 private fun username(project: Project) =
-    gradleLocalProperties(project.rootDir).getProperty("gpr.user") ?: System.getenv("GITHUB_USER")
+    gradleLocalProperties(project.rootDir, providers).getProperty("gpr.user") ?: System.getenv("GITHUB_USER")
 
 private fun password(project: Project) =
-    gradleLocalProperties(project.rootDir).getProperty("gpr.token") ?: System.getenv("GITHUB_TOKEN")
+    gradleLocalProperties(project.rootDir, providers).getProperty("gpr.token") ?: System.getenv("GITHUB_TOKEN")
 
 publishing {
     repositories {

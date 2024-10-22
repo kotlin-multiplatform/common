@@ -8,20 +8,17 @@ public abstract class KtorHttpClient(
     private val engine: HttpClientEngine = httpClientEngine()
 ) : Closeable {
 
-    private var _httpClient: HttpClient? = null
-    public val httpClient: HttpClient
-        get() {
-            if (_httpClient == null) {
-                _httpClient = HttpClient(engine, setupHttpClient)
-            }
+    private var internalHttpClient: HttpClient? = null
 
-            return _httpClient!!
+    public val httpClient: HttpClient
+        get() = internalHttpClient ?: HttpClient(engine, configureHttpClient).also {
+            internalHttpClient = it
         }
 
     override fun close() {
-        _httpClient?.close()
-        _httpClient = null
+        internalHttpClient?.close()
+        internalHttpClient = null
     }
 
-    public abstract val setupHttpClient: HttpClientConfig<*>.() -> Unit
+    public abstract val configureHttpClient: HttpClientConfig<*>.() -> Unit
 }
