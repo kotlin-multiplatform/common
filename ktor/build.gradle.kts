@@ -34,7 +34,7 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            api(libs.ktor.client.core)
+            api(libs.ktor.clientCore)
         }
 
         commonTest.dependencies {
@@ -42,19 +42,19 @@ kotlin {
         }
 
         androidMain.dependencies {
-            api(libs.ktor.client.okhttp)
+            api(libs.ktor.clientOkhttp)
         }
 
         jvmMain.dependencies {
-            api(libs.ktor.client.cio)
+            api(libs.ktor.clientCio)
         }
 
         appleMain.dependencies {
-            api(libs.ktor.client.darwin)
+            api(libs.ktor.clientDarwin)
         }
 
         linuxMain.dependencies {
-            api(libs.ktor.client.curl)
+            api(libs.ktor.clientCurl)
         }
     }
 }
@@ -90,7 +90,7 @@ android {
 //}
 
 group = "kmp.common"
-version = "0.1-SNAPSHOT-5" //versionString()
+version = "0.1-SNAPSHOT-6" //versionString()
 
 private fun username(project: Project) =
     gradleLocalProperties(project.rootDir, providers).getProperty("gpr.user") ?: System.getenv("GITHUB_USER")

@@ -1,20 +1,20 @@
 [versions]
-agp = "8.5.2"
+android-gradlePlugin = "8.5.2"
 benmanes-versions = "0.51.0"
 palantir-gitVersion = "3.0.0"
 kotlin = "2.0.21"
-ktor = "3.0.0"
+ktor = "3.0.2"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
-ktor-client-cio = { module = "io.ktor:ktor-client-cio", version.ref = "ktor" }
-ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
-ktor-client-curl = { module = "io.ktor:ktor-client-curl", version.ref = "ktor" }
-ktor-client-darwin = { module = "io.ktor:ktor-client-darwin", version.ref = "ktor" }
-ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
+ktor-clientCio = { module = "io.ktor:ktor-client-cio", version.ref = "ktor" }
+ktor-clientCore = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
+ktor-clientCurl = { module = "io.ktor:ktor-client-curl", version.ref = "ktor" }
+ktor-clientDarwin = { module = "io.ktor:ktor-client-darwin", version.ref = "ktor" }
+ktor-clientOkhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
 
 [plugins]
-android-library = { id = "com.android.library", version.ref = "agp" }
+android-library = { id = "com.android.library", version.ref = "android-gradlePlugin" }
 benmanes-versions = { id = "com.github.ben-manes.versions", version.ref = "benmanes-versions" }
 palantir-gitVersion = { id = "com.palantir.git-version", version.ref = "palantir-gitVersion" }
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
