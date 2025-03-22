@@ -90,7 +90,7 @@ android {
 //}
 
 group = "kmp.common"
-version = "0.1-SNAPSHOT-6" //versionString()
+version = "0.1-SNAPSHOT-7" //versionString()
 
 private fun username(project: Project) =
     gradleLocalProperties(project.rootDir, providers).getProperty("gpr.user") ?: System.getenv("GITHUB_USER")
